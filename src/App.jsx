@@ -15,9 +15,7 @@ function App() {
         <Route 
           path="/" 
           element={
-            <PublicElement>
               <Home/>
-            </PublicElement>
         }
         ></Route>
         <Route 
@@ -36,12 +34,17 @@ function App() {
             </AdminElement>
         }
         ></Route>
+        
         <Route 
           path="/login" 
           element={
+            <PublicElement>
               <Login/>
+            </PublicElement>
         }
         ></Route>
+
+        
         <Route 
           path="/registrar" 
           element={

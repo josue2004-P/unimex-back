@@ -12,7 +12,7 @@ import {
     setDoc
 } from "firebase/firestore";
 import { firestore,auth } from "../firebase/config";
-
+import { useNavigate } from "react-router-dom";
 
 //Contex
 const authContext = createContext();
@@ -29,7 +29,7 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
 
-
+  const navigate = useNavigate()
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -72,7 +72,6 @@ export function AuthProvider({ children }) {
         rol: rol,
       };
 
-      
       setUser(userData.rol);
       setLoading(false)
 
@@ -88,15 +87,15 @@ export function AuthProvider({ children }) {
       if (usuarioFirebase) {
         //funcion final
   
-        if (!user) {
           setUserWithFirebaseAndRol(usuarioFirebase);
-        }
+
       } else {
         setUser(null);
         setLoading(false)
       }
     });
   }, []);
+ 
 
   return (
     <authContext.Provider

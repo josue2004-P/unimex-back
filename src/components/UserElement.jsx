@@ -21,6 +21,6 @@ export default function UserElement({children}) {
         ){
         return <>{children}</> ;
       }else{
-        return <Navigate to={'/'}/>;
+        return <Navigate to={'/login'}/>;
       }
 }
