@@ -14,6 +14,7 @@ import {
 import { firestore,auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
 
+
 //Contex
 const authContext = createContext();
 
@@ -105,6 +106,7 @@ export function AuthProvider({ children }) {
         user,
         logout,
         loading,
+      
       }}
     >
       {children}

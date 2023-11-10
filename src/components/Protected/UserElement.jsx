@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../../context/AuthContext"
 
 
 export default function UserElement({children}) {
@@ -13,14 +13,13 @@ export default function UserElement({children}) {
         ADMIN_USER:2
       }
   
-      if (loading) return <h1>Loading</h1>;
+      if (loading) return <h1></h1>;
     
       if(
-        user === USER_TYPES.NORMAL_USER || 
-        user === USER_TYPES.ADMIN_USER
+        user === USER_TYPES.NORMAL_USER 
         ){
         return <>{children}</> ;
       }else{
-        return <Navigate to={'/login'}/>;
+        return <Navigate to={'/admin'}/>;
       }
 }

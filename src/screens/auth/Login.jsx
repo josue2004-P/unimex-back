@@ -1,6 +1,6 @@
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
-import {Alert} from "../components/Alert"
+import {Alert} from "../../components/Alert"
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -18,7 +18,6 @@ function Login() {
       try {
         await login(email, password);
         setError(null)
-        navigate('/user')
         
       } catch (error) {
         setError(error.message);

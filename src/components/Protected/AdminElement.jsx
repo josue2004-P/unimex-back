@@ -1,4 +1,4 @@
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../../context/AuthContext"
 import { Navigate } from "react-router-dom";
 
 export default function AdminElement({children}) {
@@ -14,13 +14,13 @@ export default function AdminElement({children}) {
     
       const CURRENT_USER_TYPE = user;
 
-      if (loading) return <h1>Loading</h1>;
+      if (loading) return <h1></h1>;
     
       if(
         CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER
         ){
         return  <>{children}</>;
       }else{
-        return <Navigate to={'/user'}/>;
+        return <Navigate to={'/login'}/>;
       }
 }
