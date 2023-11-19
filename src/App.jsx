@@ -5,6 +5,8 @@ import Admin from "./screens/Admin";
 import PublicElement from "./components/Protected/PublicElement";
 import UserElement from "./components/Protected/UserElement";
 import AdminElement from "./components/Protected/AdminElement";
+
+import NavbarPublic from "./components/NavbarPublic";
 import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 
@@ -25,6 +27,7 @@ function App() {
         <Route 
           path="/" 
           element={
+            
               <Home/>
         }
         ></Route>

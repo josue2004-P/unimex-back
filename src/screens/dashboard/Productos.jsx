@@ -14,7 +14,7 @@ export default function Productos() {
   //Consultar la base de datos al cargar la pagina
   useEffect(() => {
     const obtenerProductos = () => {
-      firebase.db.collection('productos').onSnapshot(manejarSnapshot);
+      firebase.db.collection('products').onSnapshot(manejarSnapshot);
     }
 
     //Ejecutar funcion

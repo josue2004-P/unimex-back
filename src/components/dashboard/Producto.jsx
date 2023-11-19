@@ -6,7 +6,7 @@ export default function Producto({producto}) {
 
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
-    const {id, nombre , cantidad, precio} = producto
+    const {id, name , cantidad, precio} = producto
 
     const handleBorrarCliente = () => {
         if (window.confirm('¿Estás seguro de que deseas borrar este cliente?')) {
@@ -27,7 +27,7 @@ export default function Producto({producto}) {
   return (
     <tr key={producto.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <td className="px-6 py-4">
-      {nombre}                         
+      {name}                         
     </td>
     <td className="px-6 py-4">
       {cantidad}

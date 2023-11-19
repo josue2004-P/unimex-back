@@ -13,7 +13,7 @@ export default function Menu() {
           // consultar la base de datos al cargar
           useEffect(() => {
               const obtenerMenus=  () => {
-                 firebase.db.collection('productos').onSnapshot(manejarSnapshot);
+                 firebase.db.collection('products').onSnapshot(manejarSnapshot);
               }
               //llamado ala funcion
               obtenerMenus();
