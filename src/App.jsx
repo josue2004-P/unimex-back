@@ -1,133 +1,105 @@
-import { Route , Routes} from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import Home from "./screens/Home";
-import User from "./screens/User";
-import Admin from "./screens/Admin";
+
+//PROTECTED
 import PublicElement from "./components/Protected/PublicElement";
 import UserElement from "./components/Protected/UserElement";
 import AdminElement from "./components/Protected/AdminElement";
 
-import NavbarPublic from "./components/NavbarPublic";
+//AUTH
 import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 
-import Navbar from "./components/dashboard/Navbar";
-import Productos from "./screens/dashboard/Productos";
-import Users from "./screens/dashboard/Users";
-import NuevoProducto from "./screens/dashboard/NuevoProducto";
-import EditarProducto from "./screens/dashboard/EditarProducto";
-import NavbarUser from "./components/user/NavbarUser";
-import Menu from "./screens/user/Menu";
+//DASHBOARD PROFESOR
+import Maestros from "./screens/Maestros/Maestros";
+import Alumnos from "./screens/Maestros/Alumnos/Alumnos";
+
+//Alumno
+import Estudiante from "./screens/Estudiantes/Estudiante";
+import MaestroMensajes from "./screens/Maestros/Mensajes/MaestroMensajes";
+import MaestroTareas from "./screens/Maestros/Tareas/MaestroTareas";
 
 function App() {
   return (
     <div>
-
-      
       <Routes>
-        <Route 
-          path="/" 
-          element={
-            
-              <Home/>
-        }
-        ></Route>
+        {/* home */}
 
-        <Route 
-          path="/user" 
+        <Route path="/home" element={<Home />}></Route>
+
+        {/* Estudiantes */}
+
+        <Route
+          path="/estudiante"
           element={
             <UserElement>
-              <NavbarUser/>
-              <User/>
+              <Estudiante />
             </UserElement>
-        }
+          }
         ></Route>
 
-        <Route 
-          path="/user/menu" 
-          element={
-            <UserElement>
-              <NavbarUser/>
-              <Menu/>
-            </UserElement>
-        }
-        ></Route>
+        {/* Maestros */}
 
-        {/* admin */}
-
-        <Route 
-          path="/admin" 
+        <Route
+          path="/maestro"
           element={
             <AdminElement>
-              <Navbar/>
-              <Admin/>
+              <Maestros />
             </AdminElement>
-        }
+          }
         ></Route>
 
-        <Route 
-          path="/admin/productos" 
+        <Route
+          path="/maestro/alumnos"
           element={
             <AdminElement>
-              <Navbar/>
-              <Productos/>
+              <Alumnos />
             </AdminElement>
-        }
+          }
         ></Route>
 
-        <Route 
-          path="/admin/productos/nuevo-producto" 
+        <Route
+          path="/maestro/mensajes"
           element={
             <AdminElement>
-              <Navbar/>
-              <NuevoProducto/>
+              <MaestroMensajes />
             </AdminElement>
-        }
+          }
         ></Route>
 
-        <Route 
-          path="/admin/productos/editar-producto/:id" 
+        <Route
+          path="/maestro/tareas"
           element={
             <AdminElement>
-              <Navbar/>
-              <EditarProducto/>
+              <MaestroTareas />
             </AdminElement>
-        }
-        ></Route>
-        
-        <Route 
-          path="/admin/users" 
-          element={
-            <AdminElement>
-              <Navbar/>
-              <Users/>
-            </AdminElement>
-        }
+          }
         ></Route>
 
         {/* auth */}
-        
-        <Route 
-          path="/login" 
+
+        <Route
+          path="/"
           element={
             <PublicElement>
-              <Login/>
+              <Login />
             </PublicElement>
-        }
+          }
         ></Route>
 
-        
-        <Route 
-          path="/registrar" 
+        <Route
+          path="/registrar"
           element={
             <PublicElement>
-            <Register/>
-          </PublicElement>
-        }
+              <Register />
+            </PublicElement>
+          }
         ></Route>
+
         <Route path="*" element={<div>Page Not Found!</div>}></Route>
       </Routes>
     </div>
-  ) 
+  );
 }
 
-export default App
+export default App;

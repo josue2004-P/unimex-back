@@ -13,6 +13,6 @@ export default function PublicElement({children}) {
         ){
         return <>{children}</> ;
       }else{
-        return <Navigate to={'/user'}/>;
+        return <Navigate to={'/estudiante'}/>;
       }
 }

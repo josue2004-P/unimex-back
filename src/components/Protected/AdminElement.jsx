@@ -21,6 +21,6 @@ export default function AdminElement({children}) {
         ){
         return  <>{children}</>;
       }else{
-        return <Navigate to={'/login'}/>;
+        return <Navigate to={'/'}/>;
       }
 }
