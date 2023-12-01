@@ -24,6 +24,7 @@ import MaestroTareas from "./screens/Maestros/Tareas/MaestroTareas";
 import Coordinador from "./screens/Coordinador/Coordinador";
 import CoordinacionMaestro from "./screens/Coordinador/Maestro/CoordinacionMaestro";
 import Materias from "./screens/Maestros/Materias/Materias";
+import MateriaVer from "./screens/Maestros/Materias/MateriaVer";
 
 function App() {
   return (
@@ -87,6 +88,15 @@ function App() {
           element={
             <AdminElement>
               <Materias />
+            </AdminElement>
+          }
+        ></Route>
+
+        <Route
+          path="/maestro/materiaVer"
+          element={
+            <AdminElement>
+              <MateriaVer />
             </AdminElement>
           }
         ></Route>

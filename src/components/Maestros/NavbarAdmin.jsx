@@ -13,7 +13,7 @@ export default function NavbarAdmin() {
   const { logout } = useAuth();
 
   return (
-    <div className="h-14 ">
+    <div className="h-14  absolute">
       <div className=" flex items-center">
         <button
           data-drawer-target="default-sidebar"

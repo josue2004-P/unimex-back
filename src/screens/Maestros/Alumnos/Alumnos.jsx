@@ -72,19 +72,18 @@ export default function Alumnos() {
    }
    
 
-
   return (
     <div className="w-full h-screen flex">
       <NavbarAdmin />
 
-      <div className="p-4 sm:ml-64 w-full ">
+      <div className="p-4 sm:ml-64 w-full pt-14 lg:pt-0 ">
         <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-4 pl-5">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 mr-4">
             Alumnos
           </span>
         </h1>
 
-        <div className="w-full text-black">
+        <div className="w-full text-black ">
           <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
               <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
