@@ -58,6 +58,7 @@ export default function Alumnos() {
     //   //alamacena en el useState
     setAlumnos(alumnos);
   }
+
   function manejarSnapshotMaestro(doc) {
     if (doc.exists) {
       const maestro = doc.data();
@@ -70,6 +71,7 @@ export default function Alumnos() {
     }
    }
    
+
 
   return (
     <div className="w-full h-screen flex">

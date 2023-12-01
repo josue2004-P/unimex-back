@@ -15,12 +15,22 @@ export default function Materias() {
   const uid = user.uid;
 
   //define la constante donde se guardan los datos
-  const [state, setState] = useState([]);
+  const [state, setState] = useState({});
+  //define la constante donde se guardan los datos
+  const [materia, setMaterias] = useState([]);
 
   //Llama a firebase
   const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
+    const obtenerMaterias = () => {
+      firebase.db
+
+      .collection("Materias")
+        .where("id", "==", "xSaZX2oaNgZQJjmcfUGN")
+        .onSnapshot(manejarSnapshotMaterias);
+    };
+
     const obtenerMaestros = () => {
       firebase.db
         .collection("usuarios")
@@ -28,20 +38,38 @@ export default function Materias() {
         .onSnapshot(manejarSnapshotMaestro);
     };
 
+    obtenerMaterias();
     obtenerMaestros();
   }, [uid]);
+
+  //Materias
+  //llamado ala base en tiempo real
+  function manejarSnapshotMaterias(snapshot) {
+    const materias = snapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data(),
+      };
+    });
+
+    //   //alamacena en el useState
+    setMaterias(materias);
+  }
 
   //llamado ala base en tiempo real
   function manejarSnapshotMaestro(doc) {
     if (doc.exists) {
       const maestro = doc.data();
-      setState(maestro.materiasAsignadas);
+      setState({
+        materiaMaestro: maestro.materiasAsignadas,
+        grupoMaestro: maestro.grupo,
+      });
     } else {
       console.log("No such document!");
     }
   }
 
-  console.log(state)
+  console.log(materia);
 
   return (
     <div className="w-full h-screen flex">
@@ -53,10 +81,6 @@ export default function Materias() {
             Materias
           </span>
         </h1>
-
-        {state
-        }
-
       </div>
     </div>
   );
