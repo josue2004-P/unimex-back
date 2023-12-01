@@ -27,20 +27,22 @@ export default function Alumno({ alumno }) {
       };
      
       obtenerMaestros();
-     }, [uid, maestro]);
+     }, [uid]);
    
   
   
     function manejarSnapshotMaestro(doc) {
       if (doc.exists) {
         const maestro = doc.data();
-        setMaestro(maestro.materiaAsignada1);
+        setMaestro(maestro.materiasAsignadas);
       } else {
         console.log("No such document!");
       }
      }
 
-     const materia = materias.find(element => element === maestro);
+ 
+     const materia = maestro.filter(element => materias.includes(element));
+     
 
   return (
     <tr

@@ -30,10 +30,10 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
 
-  const navigate = useNavigate()
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  //registrar usuario
   async function registrarUsuario(email, password, rol) {
     const infoUsuario = await createUserWithEmailAndPassword(
       auth,
@@ -49,6 +49,7 @@ export function AuthProvider({ children }) {
 
   }
 
+  //LOGIN
   const login = (email, password) => {
     
    return signInWithEmailAndPassword(auth,email,password);

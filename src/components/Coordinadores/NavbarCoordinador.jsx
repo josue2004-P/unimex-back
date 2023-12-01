@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { useState } from "react";
 
-export default function NavbarAdmin() {
+export default function NavCoodinador() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -59,7 +59,7 @@ export default function NavbarAdmin() {
             <li>
               <Link
                 onClick={toggleSidebar}
-                to="/maestro"
+                to="/coordinador"
                 className="flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -78,7 +78,7 @@ export default function NavbarAdmin() {
             <li>
               <Link
                 onClick={toggleSidebar}
-                to="/maestro/mensajes"
+                to="/coordinacion/maestro"
                 className="flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -92,20 +92,18 @@ export default function NavbarAdmin() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z"
+                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
                   />
                 </svg>
 
-                <span className="flex-1 ms-3 whitespace-nowrap">Mensajes</span>
-                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                  0
-                </span>
+                <span className="flex-1 ms-3 whitespace-nowrap">Maestros</span>
               </Link>
             </li>
+
             <li>
               <Link
                 onClick={toggleSidebar}
-                to="/maestro/alumnos"
+                to="/coordinacion/estudiante"
                 className="flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -120,30 +118,7 @@ export default function NavbarAdmin() {
                 <span className="flex-1 ms-3 whitespace-nowrap">Alumnos</span>
               </Link>
             </li>
-            <li>
-              <Link
-                to="/maestro/materias"
-                onClick={toggleSidebar}
-                className="flex items-center p-2  rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122"
-                  />
-                </svg>
 
-                <span className="flex-1 ms-3 whitespace-nowrap">Materias</span>
-              </Link>
-            </li>
             <li>
               <button
                 onClick={() => {
@@ -180,6 +155,7 @@ export default function NavbarAdmin() {
                 <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
               </button>
             </li>
+
             <li>
               <button
                 onClick={toggleSidebar}

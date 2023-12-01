@@ -1,15 +1,14 @@
 import { useAuth } from "../../context/AuthContext"
 import { Navigate } from "react-router-dom";
 
-export default function AdminElement({children}) {
-
-  
-  const { user,loading } = useAuth()
+export default function CoordinadorElement({children}) {
+    const { user,loading } = useAuth()
 
     const USER_TYPES = {
         PUBLIC:0,
         NORMAL_USER:1,
-        ADMIN_USER:2
+        ADMIN_USER:2,
+        COORDINADOR_USER:3
       }
     
       const CURRENT_USER_TYPE = user;
@@ -17,10 +16,10 @@ export default function AdminElement({children}) {
       if (loading) return <h1></h1>;
     
       if(
-        CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER
+        CURRENT_USER_TYPE === USER_TYPES.COORDINADOR_USER
         ){
         return  <>{children}</>;
       }else{
-        return <Navigate to={'/coordinador'}/>;
+        return <Navigate to={'/'}/>;
       }
 }

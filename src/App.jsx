@@ -5,6 +5,7 @@ import Home from "./screens/Home";
 import PublicElement from "./components/Protected/PublicElement";
 import UserElement from "./components/Protected/UserElement";
 import AdminElement from "./components/Protected/AdminElement";
+import CoordinadorElement from "./components/Protected/CoordinadorElement";
 
 //AUTH
 import Login from "./screens/auth/Login";
@@ -18,6 +19,11 @@ import Alumnos from "./screens/Maestros/Alumnos/Alumnos";
 import Estudiante from "./screens/Estudiantes/Estudiante";
 import MaestroMensajes from "./screens/Maestros/Mensajes/MaestroMensajes";
 import MaestroTareas from "./screens/Maestros/Tareas/MaestroTareas";
+
+//COORDINADOR
+import Coordinador from "./screens/Coordinador/Coordinador";
+import CoordinacionMaestro from "./screens/Coordinador/Maestro/CoordinacionMaestro";
+import Materias from "./screens/Maestros/Materias/Materias";
 
 function App() {
   return (
@@ -73,6 +79,35 @@ function App() {
             <AdminElement>
               <MaestroTareas />
             </AdminElement>
+          }
+        ></Route>
+
+        <Route
+          path="/maestro/materias"
+          element={
+            <AdminElement>
+              <Materias />
+            </AdminElement>
+          }
+        ></Route>
+
+        {/* COORDINADOR */}
+
+        <Route
+          path="/coordinador"
+          element={
+            <CoordinadorElement>
+              <Coordinador />
+            </CoordinadorElement>
+          }
+        ></Route>
+
+        <Route
+          path="/coordinacion/maestro"
+          element={
+            <CoordinadorElement>
+              <CoordinacionMaestro />
+            </CoordinadorElement>
           }
         ></Route>
 

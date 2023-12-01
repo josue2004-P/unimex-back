@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import './index.css'
 import { AuthProvider } from './context/AuthContext.jsx'
 import firebase, {FirebaseContext} from './firebase'
@@ -13,11 +13,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         firebase
       }}
     >
-      <BrowserRouter>
+      <HashRouter>
         <AuthProvider>
           <App />
         </AuthProvider>
-      </BrowserRouter>
+      </HashRouter>
     </FirebaseContext.Provider>
   </React.StrictMode>,
 )

@@ -15,9 +15,9 @@ export default function Alumnos() {
   //user
   const uid = user.uid;
 
-
   //define la constante donde se guardan los datos
-  const [maestro, setMaestro] = useState([]);
+  const [state,setState] = useState({})
+
   const [alumnos, setAlumnos] = useState([]);
 
   //Llama a firebase
@@ -25,17 +25,26 @@ export default function Alumnos() {
 
   useEffect(() => {
     const obtenerAlumnos = () => {
-      firebase.db.collection("alumnos").where("materias", "array-contains", maestro).onSnapshot(manejarSnapshotAlumnos);
+      if (Array.isArray(state.materiaMaestro) && state.materiaMaestro.length > 0) {
+        firebase.db
+          .collection("alumnos")
+          .where("materias", "array-contains-any", state.materiaMaestro).where("id_grupo","==",state.grupoMaestro)
+          .onSnapshot(manejarSnapshotAlumnos);
+      }
     };
-    
+   
     const obtenerMaestros = () => {
-      firebase.db.collection("usuarios").doc(uid).onSnapshot(manejarSnapshotMaestro);
+      firebase.db
+        .collection("usuarios")
+        .doc(uid)
+        .onSnapshot(manejarSnapshotMaestro);
     };
    
     obtenerMaestros();
     obtenerAlumnos();
-   }, [uid, maestro]);
-   
+
+  
+   }, [uid,state]);
 
   //llamado ala base en tiempo real
   function manejarSnapshotAlumnos(snapshot) {
@@ -46,20 +55,21 @@ export default function Alumnos() {
       };
     });
 
-    //alamacena en el useState
+    //   //alamacena en el useState
     setAlumnos(alumnos);
   }
-
   function manejarSnapshotMaestro(doc) {
     if (doc.exists) {
       const maestro = doc.data();
-      setMaestro(maestro.materiaAsignada1);
+      setState({
+        materiaMaestro: maestro.materiasAsignadas,
+        grupoMaestro: maestro.grupo
+      });
     } else {
       console.log("No such document!");
     }
    }
-  
-
+   
 
   return (
     <div className="w-full h-screen flex">
@@ -72,7 +82,7 @@ export default function Alumnos() {
           </span>
         </h1>
 
-        <div className="w-full  h-screen text-black">
+        <div className="w-full text-black">
           <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
               <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
