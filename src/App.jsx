@@ -18,13 +18,15 @@ import Alumnos from "./screens/Maestros/Alumnos/Alumnos";
 //Alumno
 import Estudiante from "./screens/Estudiantes/Estudiante";
 import MaestroMensajes from "./screens/Maestros/Mensajes/MaestroMensajes";
-import MaestroTareas from "./screens/Maestros/Tareas/MaestroTareas";
+import TareasParcial from "./screens/Maestros/Materias/Tareas/TareasParcial";
 
 //COORDINADOR
 import Coordinador from "./screens/Coordinador/Coordinador";
 import CoordinacionMaestro from "./screens/Coordinador/Maestro/CoordinacionMaestro";
+
 import Materias from "./screens/Maestros/Materias/Materias";
-import MateriaVer from "./screens/Maestros/Materias/MateriaVer";
+import Parciales from "./screens/Maestros/Materias/Parciales";
+import DetallesTareas from "./screens/Maestros/Materias/Tareas/DetallesTareas";
 
 function App() {
   return (
@@ -75,15 +77,6 @@ function App() {
         ></Route>
 
         <Route
-          path="/maestro/tareas"
-          element={
-            <AdminElement>
-              <MaestroTareas />
-            </AdminElement>
-          }
-        ></Route>
-
-        <Route
           path="/maestro/materias"
           element={
             <AdminElement>
@@ -93,10 +86,28 @@ function App() {
         ></Route>
 
         <Route
-          path="/maestro/materiaVer"
+          path="/maestro/parciales/:id"
           element={
             <AdminElement>
-              <MateriaVer />
+              <Parciales />
+            </AdminElement>
+          }
+        ></Route>
+        
+        <Route
+          path="/maestro/tareas/:par/:id"
+          element={
+            <AdminElement>
+              <TareasParcial />
+            </AdminElement>
+          }
+        ></Route>
+
+        <Route
+          path="/maestro/:par/:mat/detallestareas/:id"
+          element={
+            <AdminElement>
+              <DetallesTareas />
             </AdminElement>
           }
         ></Route>

@@ -1,19 +1,24 @@
 import { useContext, useState, useEffect } from "react";
-import NavbarAdmin from "../../../components/Maestros/NavbarAdmin";
-
+import NavbarAdmin from "../../../../components/Maestros/NavbarAdmin";
 import { useFormik } from "formik";
-import { FirebaseContext } from "../../../firebase";
-
+import { FirebaseContext } from "../../../../firebase";
+import { useParams } from "react-router-dom";
 //Alerta
 import Swal from "sweetalert2";
-
 //Import componente
-import Tarea from "../../../components/Maestros/Tarea";
-
+import Tarea from "../../../../components/Maestros/Tareas/Tarea";
 //Autentificacion
 import { getAuth } from "firebase/auth";
 
-export default function MaestroTareas() {
+export default function TareasParcial() {
+
+  const { id } = useParams();
+
+  const { par } = useParams();
+
+  const parcial = par
+  const idMateria =id
+
   //TRAE UID DE USUARIO ACTUAL
   const auth = getAuth();
   const user = auth.currentUser;
@@ -22,7 +27,7 @@ export default function MaestroTareas() {
   //Llama a firebase
   const { firebase } = useContext(FirebaseContext);
 
-  //USEEFECT
+  //USEEFECT trae el usuario por el uid
   useEffect(() => {
     const obtenerMaestros = () => {
       firebase.db
@@ -43,7 +48,8 @@ export default function MaestroTareas() {
         titulo: "",
         descripcion: "",
         grupo: maestro.grupo || "",
-        id_materia: maestro.materiasAsignadas || "",
+        id_materia: id || "",
+        parcial: par,
         maestro: uid,
       });
     } else {
@@ -62,6 +68,8 @@ export default function MaestroTareas() {
       grupo: "",
       id_materia: "",
       maestro: "",
+      parcial: "",
+      
     },
     onSubmit: (tareas) => {
       try {
@@ -91,6 +99,8 @@ export default function MaestroTareas() {
       firebase.db
         .collection("tareas")
         .where("maestro", "==", uid)
+        .where("id_materia", "==", id)
+        .where("parcial", "==", parcial)
         .onSnapshot(manejarSnapshotAlumnos);
     };
 
@@ -114,11 +124,11 @@ export default function MaestroTareas() {
     <div className="w-full h-screen flex">
       <NavbarAdmin />
 
-      <div className="p-4 sm:ml-64 w-full ">
+      <div className="p-4 sm:ml-64 mt-10 lg:mt-0 w-full ">
         <div className="w-full text-gray-900 font-semibold whitespace-nowrap">
           <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl p-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 mr-4">
-              Tareas
+              Tareas Parcial {parcial}
             </span>
           </h1>
         </div>
@@ -146,7 +156,7 @@ export default function MaestroTareas() {
               >
                 &#8203;
               </span>
-              <div className="w-[60%] inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div className="w-[80%] sm:w-fit inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle ">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3  text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -247,46 +257,10 @@ export default function MaestroTareas() {
           </div>
         ) : null}
 
-        <div className="w-full  text-black">
-          <div className="py-12">
-            <div className=" mx-auto ">
-              <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div className="p-6 text-gray-900">
-                  <div className="relative overflow-x-auto min-[375px]:mt-4 ">
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                          <th scope="col" className="px-6 py-3">
-                            Id tarea
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Titulo
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Descripcion
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Grupo
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Maestro
-                          </th>
-                          <th scope="col" className="px-6 py-3">
-                            Materia
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {tareas.map((tarea) => (
-                          <Tarea key={tarea.id} tarea={tarea} />
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="w-full overflow-auto lg:h-[30%] xl:h-[50%]">
+          {tareas.map((tarea) => (
+            <Tarea key={tarea.id} tarea={tarea} parcial={parcial} materia={idMateria} />
+          ))}
         </div>
       </div>
     </div>

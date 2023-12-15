@@ -9,15 +9,12 @@ import { getAuth } from "firebase/auth";
 
 export default function Alumnos() {
   const auth = getAuth();
-
   const user = auth.currentUser;
-
   //user
   const uid = user.uid;
 
   //define la constante donde se guardan los datos
-  const [state,setState] = useState({})
-
+  const [state, setState] = useState({});
   const [alumnos, setAlumnos] = useState([]);
 
   //Llama a firebase
@@ -25,26 +22,28 @@ export default function Alumnos() {
 
   useEffect(() => {
     const obtenerAlumnos = () => {
-      if (Array.isArray(state.materiaMaestro) && state.materiaMaestro.length > 0) {
+      if (
+        Array.isArray(state.materiaMaestro) &&
+        state.materiaMaestro.length > 0
+      ) {
         firebase.db
           .collection("alumnos")
-          .where("materias", "array-contains-any", state.materiaMaestro).where("id_grupo","==",state.grupoMaestro)
+          .where("materias", "array-contains-any", state.materiaMaestro)
+          .where("id_grupo", "==", state.grupoMaestro)
           .onSnapshot(manejarSnapshotAlumnos);
       }
     };
-   
+
     const obtenerMaestros = () => {
       firebase.db
         .collection("usuarios")
         .doc(uid)
         .onSnapshot(manejarSnapshotMaestro);
     };
-   
+
     obtenerMaestros();
     obtenerAlumnos();
-
-  
-   }, [uid,state]);
+  }, [uid, state]);
 
   //llamado ala base en tiempo real
   function manejarSnapshotAlumnos(snapshot) {
@@ -59,18 +58,18 @@ export default function Alumnos() {
     setAlumnos(alumnos);
   }
 
+  //FUNCION PARA PROBLEMAS CON ARREGLO
   function manejarSnapshotMaestro(doc) {
     if (doc.exists) {
       const maestro = doc.data();
       setState({
         materiaMaestro: maestro.materiasAsignadas,
-        grupoMaestro: maestro.grupo
+        grupoMaestro: maestro.grupo,
       });
     } else {
       console.log("No such document!");
     }
-   }
-   
+  }
 
   return (
     <div className="w-full h-screen flex">
@@ -106,6 +105,12 @@ export default function Alumnos() {
                           </th>
                           <th scope="col" className="px-6 py-3">
                             Materia
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Calificacion P1
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                            Calificacion P2
                           </th>
                         </tr>
                       </thead>
